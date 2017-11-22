@@ -68,41 +68,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 	<?php require 'partials/navbar.php'; ?>
+	
 	<div class="container">
-		<h1>Add a new profile</h1>
 		<?=flash()?>
-		<form action="add.php" method="POST">
-			<div class="form-row">
-				<div class="form-group col-md-6">
-					<label for="first_name">First name</label>
-					<input class="form-control" type="text" name="first_name" placeholder="Enter your first name" >
-				</div>
-				<div class="form-group col-md-6">
-					<label for="last_name">Last name</label>
-					<input class="form-control" type="text" name="last_name" placeholder="Enter your last name" >
-				</div>
+		<div class="card" style="margin-top: 1em">
+			<h1 class="card-header">Add a new profile</h1>
+			<div class="card-body">
+				<form action="add.php" method="POST">
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="first_name">First name</label>
+							<input class="form-control" type="text" name="first_name" placeholder="Enter your first name" >
+						</div>
+						<div class="form-group col-md-6">
+							<label for="last_name">Last name</label>
+							<input class="form-control" type="text" name="last_name" placeholder="Enter your last name" >
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input class="form-control" type="email" name="email" placeholder="Enter your email" >
+					</div>
+					<div class="form-group">
+						<label for="headline">Headline</label>
+						<input class="form-control" type="text" name="headline" placeholder="Enter your headline" >
+					</div>
+					<div class="form-group">
+						<label for="summary">Summary</label>
+						<textarea class="form-control" name="summary" placeholder="Enter a brief summary" ></textarea>
+					</div>
+					<div class="container-fluid" style="margin-top: 1em; margin-bottom: 1em">
+						<h4>Positions:</h4>
+						<div id="position_fields"></div>
+						<div><button id="add_pos" class="btn btn-success btn-sm" style="margin-top: 1em; margin-bottom: 1em">+</button></div>
+					</div>
+					<button class="btn btn-primary" type="submit">Add profile</button>
+					<a class="btn btn-secondary" href="add.php">Reset</a>
+				</form>
 			</div>
-			<div class="form-group">
-				<label for="email">Email</label>
-				<input class="form-control" type="email" name="email" placeholder="Enter your email" >
-			</div>
-			<div class="form-group">
-				<label for="headline">Headline</label>
-				<input class="form-control" type="text" name="headline" placeholder="Enter your headline" >
-			</div>
-			<div class="form-group">
-				<label for="summary">Summary</label>
-				<textarea class="form-control" name="summary" placeholder="Enter a brief summary" ></textarea>
-			</div>
-			<div class="container-fluid" style="margin-top: 1em; margin-bottom: 1em">
-				<h4>Positions:</h4>
-				<div id="position_fields"></div>
-				<div><button id="add_pos" class="btn btn-success btn-sm" style="margin-top: 1em; margin-bottom: 1em">+</button></div>
-			</div>
-			<button class="btn btn-primary" type="submit">Add profile</button>
-			<a class="btn btn-secondary" href="add.php">Reset</a>
-		</form>
-
+		</div>
 		<a href="index.php"><button class="btn btn-secondary" style="margin-top: 1em; margin-bottom: 1em">Return home</button></a>
 		
 	</div>

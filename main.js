@@ -9,7 +9,7 @@ $(document).ready(function () {
 		}
 		countPos++;
 		$('#position_fields').append(
-			'<div id="position'+countPos+'" class="card">'
+			'<div id="position'+countPos+'" class="card" style="margin-bottom: 1em;">'
 			+'<div class="card-body">'
 			+'<div class="form-group row">'
 			+'<label class="col-form-label col-sm-2" for="year">Year: </label>'
