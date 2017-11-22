@@ -2,7 +2,7 @@ function doValidate() {
 	console.log('Validating...');
 	try {
 		addr = document.getElementById('email').value;
-        pw = document.getElementById('id_1723').value;
+        pw = document.getElementById('password').value;
         console.log("Validating addr="+addr+" pw="+pw);
         if (addr == null || addr == "" || pw == null || pw == "") {
             alert("Both fields must be filled out");
