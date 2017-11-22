@@ -67,13 +67,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				<label for="summary">Summary</label>
 				<textarea class="form-control" name="summary" placeholder="Enter a brief summary" ></textarea>
 			</div>
+			<div class="container-fluid" style="margin-top: 1em; margin-bottom: 1em">
+				<h4>Positions:</h4>
+				<div id="position_fields"></div>
+				<div><button id="add_pos" class="btn btn-success btn-sm" style="margin-top: 1em; margin-bottom: 1em">+</button></div>
+			</div>
 			<button class="btn btn-primary" type="submit">Add profile</button>
 			<button class="btn btn-secondary" type="reset">Reset</button>
 		</form>
 
 		<a href="index.php"><button class="btn btn-secondary" style="margin-top: 1em; margin-bottom: 1em">Return home</button></a>
-		<div><h4>Position: </h4><button id="add_pos" class="btn btn-success btn-sm">+</button></div>
-		<div id="position_fields"></div>
 		
 	</div>
 
