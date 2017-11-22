@@ -14,15 +14,24 @@ require 'flash.php';
 </head>
 <body>
 <h1>Assignement 2 - Profile Database</h1>
-<?php 
+<?= $flash ?>
+<?php
+	// Login
 	if (!isset($_SESSION['user'])) {
 		echo '<a href="login.php">Please login</a>';
 	}
 
+	// Table of profiles
 	if ($profiles->fetch(PDO::FETCH_ASSOC) === false) {
 		echo "<p>No profile found.</p>";
 	} else {
 		require 'table_profiles.php';
+	}
+
+	// Logout buttons
+	if (isset($_SESSION['user'])) {
+		echo '<div><a href="add.php">Add a new entry</a></div>';
+		echo '<div><a href="logout.php">Logout</a></div>';
 	}
  ?>
 
