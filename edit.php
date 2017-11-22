@@ -10,11 +10,11 @@ if (!isset($_SESSION['user_id'])) {
 
 // POST CONTROLLER
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	if (strlen($_POST['first_name'])>0 && strlen($_POST['last_name'])>0 && strlen($_POST['email'])>0 && strlen($_POST['headline'])>0 && strlen($_POST['summary'])>0) {
+	if (strlen($_POST['first_name'])>0 && strlen($_POST['last_name'])>0 && strlen($_POST['email'])>0 && strlen($_POST['headline'])>0 && strlen($_POST['summary'])>0 && strlen($_POST['profile_id'])>0) {
 		if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-			$query = $pdo->prepare("INSERT INTO profiles (user_id, first_name, last_name, email, headline, summary) VALUES (:user_id, :first_name, :last_name, :email, :headline, :summary)");
+			$query = $pdo->prepare("UPDATE profiles SET first_name=:first_name, last_name=:last_name, email=:email, headline=:headline, summary=:summary WHERE profile_id=:profile_id");
 			$query->execute(array(
-				':user_id' => $_SESSION['user_id'],
+				':profile_id' => $_POST['profile_id'],
 				':first_name' => $_POST['first_name'],
 				':last_name' => $_POST['last_name'],
 				':email' => $_POST['email'],
@@ -22,17 +22,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				':summary' => $_POST['summary']
 			));
 
-			$_SESSION['success'] = 'Record added';
+			$_SESSION['success'] = 'Record edited';
 			header('Location: index.php');
 			return;
 		} else {
 			$_SESSION['error'] = 'Please enter a valid email address.';
-			header('Location: add.php');
+			header("Location: edit.php?profile_id=".$_POST['profile_id']);
 			return;
 		}
 	} else {
 		$_SESSION['error'] = 'All fields are required';
-		header('Location: add.php');
+		header("Location: edit.php?profile_id=".$_POST['profile_id']);
 		return;
 	}
 }
@@ -66,7 +66,7 @@ require 'flash.php';
 <body>
 	<h1>Edit a profile - <?= htmlentities($profile['first_name']).' '.htmlentities($profile['last_name']) ?></h1>
 	<?=$flash?>
-	<form action="edit.php" method="POST">
+	<form action="edit.php?profile_id=<?=$profile['profile_id']?>" method="POST">
 		<p>Contact information:</p>
 		<p>
 			<input type="text" name="first_name" placeholder="First name" value="<?= htmlentities($profile['first_name'])?>">
@@ -85,6 +85,7 @@ require 'flash.php';
 		<p>
 			<textarea name="summary" placeholder="Enter a brief summary" ><?= htmlentities($profile['summary'])?></textarea>
 		</p>
+		<input type="hidden" name="profile_id" value="<?=$profile['profile_id']?>">
 		<input type="submit" value="Edit profile">
 		<input type="reset" value="Reset">		
 	</form>
