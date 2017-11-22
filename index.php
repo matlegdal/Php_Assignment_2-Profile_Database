@@ -2,7 +2,7 @@
 session_start();
 require_once 'pdo.php';
 
-$profiles = $pdo->query('SELECT * FROM profiles');
+$profiles = $pdo->query('SELECT first_name, last_name, headline FROM profiles');
 
 require 'flash.php';
 ?>
@@ -17,19 +17,15 @@ require 'flash.php';
 <?= $flash ?>
 <?php
 	// Login
-	if (!isset($_SESSION['user'])) {
+	if (!isset($_SESSION['user_id'])) {
 		echo '<a href="login.php">Please login</a>';
 	}
 
 	// Table of profiles
-	if ($profiles->fetch(PDO::FETCH_ASSOC) === false) {
-		echo "<p>No profile found.</p>";
-	} else {
-		require 'table_profiles.php';
-	}
+	require 'table_profiles.php';
 
 	// Logout buttons
-	if (isset($_SESSION['user'])) {
+	if (isset($_SESSION['user_id'])) {
 		echo '<div><a href="add.php">Add a new entry</a></div>';
 		echo '<div><a href="logout.php">Logout</a></div>';
 	}

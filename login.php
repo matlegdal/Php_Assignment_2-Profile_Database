@@ -2,7 +2,7 @@
 session_start();
 require_once 'pdo.php';
 
-if (isset($_SESSION['user'])) {
+if (isset($_SESSION['user_id'])) {
 	$_SESSION['success'] = 'You are already logged in.';
 	header('Location: index.php');
 	return;
@@ -17,7 +17,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
 	if ($user !== false) {
 		$_SESSION['name'] = $user['name'];
-		$_SESSION['user'] = $user['user_id'];
+		$_SESSION['user_id'] = $user['user_id'];
 		header('Location: index.php');
 		return;
 	} else {
