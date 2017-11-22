@@ -7,7 +7,7 @@
 		echo '<form class="form-inline" action="login.php" method="POST">';
 		echo '<input class="form-control mr-sm-2" type="email" placeholder="Email" name="email" required>';
 		echo '<input class="form-control mr-sm-2" type="password" placeholder="Password" name="password" required>';
-		echo '<button class="btn btn-primary my-2 my-sm-0" type="submit">Login</button>';
+		echo '<button class="btn btn-primary my-2 my-sm-0" type="submit" onclick="doValidate();">Login</button>';
 		echo "</form>";
 	}
 ?>

@@ -106,8 +106,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		<a href="index.php"><button class="btn btn-secondary" style="margin-top: 1em; margin-bottom: 1em">Return home</button></a>
 		
 	</div>
-
-	<script type="text/javascript" src="main.js"></script>
 </body>
 </html>
 
