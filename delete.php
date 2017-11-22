@@ -42,21 +42,41 @@ if ($profile === false) {
 </head>
 <body>
 	<?php require 'partials/navbar.php'; ?>
-	<div class="container">
-		<h1>Delete a profile - <?= htmlentities($profile['first_name']).' '.htmlentities($profile['last_name']) ?></h1>
+	<div class="container" style="margin: 2em">
 		<?=flash()?>
-		<div class="alert alert-warning">Are you sure you want to delete this profile?</div>
-		<p>First name: <?= htmlentities($profile['first_name'])?></p>
-		<p>Last name: <?= htmlentities($profile['last_name'])?></p>
-		<p>Email: <?= htmlentities($profile['email'])?></p>
-		<p>Headline: <?= htmlentities($profile['headline'])?></p>
-		<p>Summary: <?= htmlentities($profile['summary'])?></p>
-
-		<form action="delete.php" method="POST">
-			<input type="hidden" name="profile_id" value="<?=$profile['profile_id']?>">
-			<input type="submit" value="Delete profile" name="delete">
-		</form>
-		<p><a href="index.php">Cancel</a></p>
+		<div class="card">
+			<h1 class="card-header">Delete a profile - <?= htmlentities($profile['first_name']).' '.htmlentities($profile['last_name']) ?></h1>
+			<div class="card-body">
+				<div class="alert alert-warning">Are you sure you want to delete this profile?</div>
+				<p class="card-text">First name: <?= htmlentities($profile['first_name'])?></p>
+				<p class="card-text">Last name: <?= htmlentities($profile['last_name'])?></p>
+				<p class="card-text">Email: <?= htmlentities($profile['email'])?></p>
+				<p class="card-text">Headline: <?= htmlentities($profile['headline'])?></p>
+				<p class="card-text">Summary: <?= htmlentities($profile['summary'])?></p>
+				<h4>Positions:</h4>
+				
+				<?php
+					if (count($positions) == 0) {
+						echo "<p>No position yet</p>";
+					} else {
+						echo "<ul>";
+						foreach ($positions as $position) {
+							echo "<li>";
+							echo $position['year'];
+							echo " - ";
+							echo $position['description'];
+							echo "</li>";
+						}
+						echo "</ul>";
+					}
+				?>
+				<form action="delete.php" method="POST">
+					<input type="hidden" name="profile_id" value="<?=$profile['profile_id']?>">
+					<input class="btn btn-danger" type="submit" value="Delete profile" name="delete">
+					<a class="btn btn-secondary" href="index.php">Cancel</a>
+				</form>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
