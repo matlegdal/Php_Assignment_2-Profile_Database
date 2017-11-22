@@ -11,31 +11,28 @@ if (!isset($_SESSION['user_id'])) {
 
 // POST CONTROLLER
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	if (strlen($_POST['first_name'])>0 && strlen($_POST['last_name'])>0 && strlen($_POST['email'])>0 && strlen($_POST['headline'])>0 && strlen($_POST['summary'])>0 && strlen($_POST['profile_id'])>0) {
-		if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-			$query = $pdo->prepare("UPDATE profiles SET first_name=:first_name, last_name=:last_name, email=:email, headline=:headline, summary=:summary WHERE profile_id=:profile_id");
-			$query->execute(array(
-				':profile_id' => $_POST['profile_id'],
-				':first_name' => $_POST['first_name'],
-				':last_name' => $_POST['last_name'],
-				':email' => $_POST['email'],
-				':headline' => $_POST['headline'],
-				':summary' => $_POST['summary']
-			));
 
-			$_SESSION['success'] = 'Record edited';
-			header('Location: index.php');
-			return;
-		} else {
-			$_SESSION['error'] = 'Please enter a valid email address.';
-			header("Location: edit.php?profile_id=".$_POST['profile_id']);
-			return;
-		}
-	} else {
-		$_SESSION['error'] = 'All fields are required';
+	$message = validate_profile();
+	if (is_string($message)) {
+		$_SESSION['error'] = $message;
 		header("Location: edit.php?profile_id=".$_POST['profile_id']);
 		return;
 	}
+
+	$query = $pdo->prepare("UPDATE profiles SET first_name=:first_name, last_name=:last_name, email=:email, headline=:headline, summary=:summary WHERE profile_id=:profile_id");
+	$query->execute(array(
+		':profile_id' => $_POST['profile_id'],
+		':first_name' => $_POST['first_name'],
+		':last_name' => $_POST['last_name'],
+		':email' => $_POST['email'],
+		':headline' => $_POST['headline'],
+		':summary' => $_POST['summary']
+	));
+
+	$_SESSION['success'] = 'Record edited';
+	header('Location: index.php');
+	return;
+
 }
 
 // GET CONTROLLER
