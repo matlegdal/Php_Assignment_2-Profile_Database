@@ -11,6 +11,7 @@ if (!isset($_SESSION['user_id'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	
+	// VALIDATION
 	$message = validate_profile();
 	if (is_string($message)) {
 		$_SESSION['error'] = $message;
@@ -18,6 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		return;
 	}
 
+	$message = validate_pos();
+	if (is_string($message)) {
+		$_SESSION['error'] = $message;
+		header("Location: add.php");
+		return;
+	}
+
+	// INSERT PROFILE
 	$query = $pdo->prepare("INSERT INTO profiles (user_id, first_name, last_name, email, headline, summary) VALUES (:user_id, :first_name, :last_name, :email, :headline, :summary)");
 	$query->execute(array(
 		':user_id' => $_SESSION['user_id'],
@@ -28,6 +37,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		':summary' => $_POST['summary']
 	));
 
+	// INSERT POSITION
+	$profile_id = $pdo->lastInsertId();
+	$rank = 0;
+	for ($i=1; $i < 11; $i++) { 
+		if (!isset($_POST['year'.$i])) continue;
+		if (!isset($_POST['desc'.$i])) continue;
+		$query = $pdo->prepare("INSERT INTO positions (profile_id, rank, year, description) VALUES(:profile_id, :rank, :year, :description)");
+		$query->execute(array(
+			':profile_id' => $profile_id,
+			':rank' => $rank,
+			'year' => $_POST['year'.$i],
+			':description' => $_POST['desc'.$i]
+		));
+		$rank++;
+	}
+
+	// UPON SUCCESS REDIRECT
 	$_SESSION['success'] = 'Profile added';
 	header('Location: index.php');
 	return;
