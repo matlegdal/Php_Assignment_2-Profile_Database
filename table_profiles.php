@@ -10,7 +10,7 @@
 		<?php
 			while ($profile = $profiles->fetch(PDO::FETCH_ASSOC)) {
 				echo "<tr>";
-				echo "<td>".htmlentities($profile['first_name'])." ".htmlentities($profile['last_name'])."</td>";
+				echo "<td><a href=view.php?profile_id=".$profile['profile_id'].">".htmlentities($profile['first_name'])." ".htmlentities($profile['last_name'])."</a></td>";
 				echo "<td>".htmlentities($profile['headline'])."</td>";
 				echo '<td>';
 					if (isset($_SESSION['user_id'])) {

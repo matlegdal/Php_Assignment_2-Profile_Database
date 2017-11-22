@@ -2,7 +2,7 @@
 session_start();
 require_once 'pdo.php';
 
-$profiles = $pdo->query('SELECT first_name, last_name, headline FROM profiles');
+$profiles = $pdo->query('SELECT profile_id, first_name, last_name, headline FROM profiles');
 
 require 'flash.php';
 ?>
