@@ -24,14 +24,17 @@ if ($profile === false) {
 <html>
 <head>
 	<title>Show a Profile - <?= htmlentities($profile['first_name']).' '.htmlentities($profile['last_name']) ?></title>
+	<?php require 'headers.php'; ?>
 </head>
 <body>
-<h1>Profile - <?= htmlentities($profile['first_name']).' '.htmlentities($profile['last_name']) ?></h1>
-<p>First name: <?= htmlentities($profile['first_name'])?></p>
-<p>Last name: <?= htmlentities($profile['last_name'])?></p>
-<p>Email: <?= htmlentities($profile['email'])?></p>
-<p>Headline: <?= htmlentities($profile['headline'])?></p>
-<p>Summary: <?= htmlentities($profile['summary'])?></p>
-<p><a href="index.php">Done</a></p>
+	<div class="container">
+		<h1>Profile - <?= htmlentities($profile['first_name']).' '.htmlentities($profile['last_name']) ?></h1>
+		<p>First name: <?= htmlentities($profile['first_name'])?></p>
+		<p>Last name: <?= htmlentities($profile['last_name'])?></p>
+		<p>Email: <?= htmlentities($profile['email'])?></p>
+		<p>Headline: <?= htmlentities($profile['headline'])?></p>
+		<p>Summary: <?= htmlentities($profile['summary'])?></p>
+		<p><a href="index.php">Done</a></p>
+	</div>
 </body>
 </html>

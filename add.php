@@ -43,32 +43,35 @@ require 'flash.php';
 <html>
 <head>
 	<title>Add a profile</title>
+	<?php require 'headers.php'; ?>
 </head>
 <body>
-	<h1>Add a new profile</h1>
-	<?=$flash?>
-	<form action="add.php" method="POST">
-		<p>Contact information:</p>
-		<p>
-			<input type="text" name="first_name" placeholder="First name" >
-			<input type="text" name="last_name" placeholder="Last name" >
-			<input type="email" name="email" placeholder="Email" >
-		</p>
-		<p>
-			Headline:
-		</p>
-		<p>
-			<input type="text" name="headline" placeholder="Enter your headline" >
-		</p>
-		<p>
-			Summary:
-		</p>
-		<p>
-			<textarea name="summary" placeholder="Enter a brief summary" ></textarea>
-		</p>
-		<input type="submit" value="Add profile">
-		<input type="reset" value="Reset">		
-	</form>
-	<a href="index.php">Retour à l'index</a>
+	<div class="container">
+		<h1>Add a new profile</h1>
+		<?=$flash?>
+		<form action="add.php" method="POST">
+			<p>Contact information:</p>
+			<p>
+				<input type="text" name="first_name" placeholder="First name" >
+				<input type="text" name="last_name" placeholder="Last name" >
+				<input type="email" name="email" placeholder="Email" >
+			</p>
+			<p>
+				Headline:
+			</p>
+			<p>
+				<input type="text" name="headline" placeholder="Enter your headline" >
+			</p>
+			<p>
+				Summary:
+			</p>
+			<p>
+				<textarea name="summary" placeholder="Enter a brief summary" ></textarea>
+			</p>
+			<input type="submit" value="Add profile">
+			<input type="reset" value="Reset">		
+		</form>
+		<a href="index.php">Retour à l'index</a>
+	</div>
 </body>
 </html>

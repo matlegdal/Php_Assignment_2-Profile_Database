@@ -18,6 +18,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 	if ($user !== false) {
 		$_SESSION['name'] = $user['name'];
 		$_SESSION['user_id'] = $user['user_id'];
+		$_SESSION['success'] = "You are now logged in.";
 		header('Location: index.php');
 		return;
 	} else {
@@ -33,18 +34,21 @@ require 'flash.php';
 <html>
 <head>
 	<title>Login</title>
+	<?php require 'headers.php'; ?>
 </head>
 <body>
-	<h1>Login</h1>
-	<?= $flash ?>
+	<div class="container">
+		<h1>Login</h1>
+		<?= $flash ?>
 
-	<form action="login.php" method="POST">
-		<input type="email" name="email" id="email" placeholder="Enter your email" required>
-		<input type="password" name="password" id="password" placeholder="Type your password" required>
-		<input type="submit" value="Login" onclick="return doValidate();">
-		<input type="reset" value="Cancel">
-	</form>
-	<div><a href="index.php">Retour</a></div>
+		<form action="login.php" method="POST">
+			<input type="email" name="email" id="email" placeholder="Enter your email" required>
+			<input type="password" name="password" id="password" placeholder="Type your password" required>
+			<input type="submit" value="Login" onclick="return doValidate();">
+			<input type="reset" value="Cancel">
+		</form>
+		<div><a href="index.php">Retour</a></div>
+	</div>
 
 	<script type="text/javascript" src="main.js"></script>
 </body>

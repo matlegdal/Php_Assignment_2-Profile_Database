@@ -62,33 +62,36 @@ require 'flash.php';
 <html>
 <head>
 	<title>Edit a profile</title>
+	<?php require 'headers.php'; ?>
 </head>
 <body>
-	<h1>Edit a profile - <?= htmlentities($profile['first_name']).' '.htmlentities($profile['last_name']) ?></h1>
-	<?=$flash?>
-	<form action="edit.php?profile_id=<?=$profile['profile_id']?>" method="POST">
-		<p>Contact information:</p>
-		<p>
-			<input type="text" name="first_name" placeholder="First name" value="<?= htmlentities($profile['first_name'])?>">
-			<input type="text" name="last_name" placeholder="Last name" value="<?= htmlentities($profile['last_name'])?>">
-			<input type="email" name="email" placeholder="Email" value="<?= htmlentities($profile['email'])?>">
-		</p>
-		<p>
-			Headline:
-		</p>
-		<p>
-			<input type="text" name="headline" placeholder="Enter your headline" value="<?= htmlentities($profile['headline'])?>">
-		</p>
-		<p>
-			Summary:
-		</p>
-		<p>
-			<textarea name="summary" placeholder="Enter a brief summary" ><?= htmlentities($profile['summary'])?></textarea>
-		</p>
-		<input type="hidden" name="profile_id" value="<?=$profile['profile_id']?>">
-		<input type="submit" value="Edit profile">
-		<input type="reset" value="Reset">		
-	</form>
-	<a href="index.php">Retour à l'index</a>
+	<div class="container">
+		<h1>Edit a profile - <?= htmlentities($profile['first_name']).' '.htmlentities($profile['last_name']) ?></h1>
+		<?=$flash?>
+		<form action="edit.php?profile_id=<?=$profile['profile_id']?>" method="POST">
+			<p>Contact information:</p>
+			<p>
+				<input type="text" name="first_name" placeholder="First name" value="<?= htmlentities($profile['first_name'])?>">
+				<input type="text" name="last_name" placeholder="Last name" value="<?= htmlentities($profile['last_name'])?>">
+				<input type="email" name="email" placeholder="Email" value="<?= htmlentities($profile['email'])?>">
+			</p>
+			<p>
+				Headline:
+			</p>
+			<p>
+				<input type="text" name="headline" placeholder="Enter your headline" value="<?= htmlentities($profile['headline'])?>">
+			</p>
+			<p>
+				Summary:
+			</p>
+			<p>
+				<textarea name="summary" placeholder="Enter a brief summary" ><?= htmlentities($profile['summary'])?></textarea>
+			</p>
+			<input type="hidden" name="profile_id" value="<?=$profile['profile_id']?>">
+			<input type="submit" value="Edit profile">
+			<input type="reset" value="Reset">		
+		</form>
+		<a href="index.php">Retour à l'index</a>
+	</div>
 </body>
 </html>
