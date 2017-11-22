@@ -2,7 +2,8 @@
 session_start();
 require_once 'pdo.php';
 
-$profiles = $pdo->query('SELECT profile_id, first_name, last_name, headline FROM profiles');
+$query = $pdo->query('SELECT profile_id, first_name, last_name, headline FROM profiles');
+$profiles = $query->fetchAll();
 
 require 'flash.php';
 ?>
@@ -22,7 +23,11 @@ require 'flash.php';
 	}
 
 	// Table of profiles
-	require 'table_profiles.php';
+	if (count($profiles)<1) {
+		echo "<p>No profile found</p>";
+	} else {
+		require 'table_profiles.php';;
+	}
 
 	// Logout buttons
 	if (isset($_SESSION['user_id'])) {
