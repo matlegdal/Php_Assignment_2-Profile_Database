@@ -49,6 +49,6 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 		<div><a href="index.php">Retour</a></div>
 	</div>
 
-	<script type="text/javascript" src="main.js"></script>
+	<script type="text/javascript" src="validate_login.js"></script>
 </body>
 </html>

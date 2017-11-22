@@ -45,28 +45,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		<h1>Add a new profile</h1>
 		<?=flash()?>
 		<form action="add.php" method="POST">
-			<p>Contact information:</p>
-			<p>
-				<input type="text" name="first_name" placeholder="First name" >
-				<input type="text" name="last_name" placeholder="Last name" >
-				<input type="email" name="email" placeholder="Email" >
-			</p>
-			<p>
-				Headline:
-			</p>
-			<p>
-				<input type="text" name="headline" placeholder="Enter your headline" >
-			</p>
-			<p>
-				Summary:
-			</p>
-			<p>
-				<textarea name="summary" placeholder="Enter a brief summary" ></textarea>
-			</p>
-			<input type="submit" value="Add profile">
-			<input type="reset" value="Reset">		
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="first_name">First name</label>
+					<input class="form-control" type="text" name="first_name" placeholder="Enter your first name" >
+				</div>
+				<div class="form-group col-md-6">
+					<label for="last_name">Last name</label>
+					<input class="form-control" type="text" name="last_name" placeholder="Enter your last name" >
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="email">Email</label>
+				<input class="form-control" type="email" name="email" placeholder="Enter your email" >
+			</div>
+			<div class="form-group">
+				<label for="headline">Headline</label>
+				<input class="form-control" type="text" name="headline" placeholder="Enter your headline" >
+			</div>
+			<div class="form-group">
+				<label for="summary">Summary</label>
+				<textarea class="form-control" name="summary" placeholder="Enter a brief summary" ></textarea>
+			</div>
+			<button class="btn btn-primary" type="submit">Add profile</button>
+			<button class="btn btn-secondary" type="reset">Reset</button>
 		</form>
-		<a href="index.php">Retour à l'index</a>
+
+		<a href="index.php"><button class="btn btn-secondary" style="margin-top: 1em; margin-bottom: 1em">Return home</button></a>
+		<div><h4>Position: </h4><button id="add_pos" class="btn btn-success btn-sm">+</button></div>
+		<div id="position_fields"></div>
+		
 	</div>
+
+	<script type="text/javascript" src="main.js"></script>
 </body>
 </html>
+
+
+
+
+
