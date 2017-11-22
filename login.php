@@ -8,6 +8,8 @@ if (isset($_SESSION['user'])) {
 	return;
 }
 
+
+
 require 'flash.php';
 ?>
 <!DOCTYPE html>
@@ -23,10 +25,10 @@ require 'flash.php';
 		<input type="email" name="email" id="email" placeholder="Enter your email" required>
 		<input type="password" name="password" id="password" placeholder="Type your password" required>
 		<input type="submit" value="Login" onclick="return doValidate();">
-		<input type="submit" name="cancel" value="Cancel">
+		<input type="reset" value="Cancel">
 	</form>
 	<div><a href="index.php">Retour</a></div>
 
-	<script type="text/javascript" src="doValidate.js"></script>
+	<script type="text/javascript" src="main.js"></script>
 </body>
 </html>
