@@ -1,4 +1,4 @@
-countPos = 0;
+if (typeof countPos === 'undefined') {countPos = 0}
 
 $(document).ready(function () {
 	$('#add_pos').on("click", function(event){

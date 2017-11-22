@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 	// INSERT POSITION
 	$profile_id = $pdo->lastInsertId();
-	$rank = 0;
+	$rank = 1;
 	for ($i=1; $i < 11; $i++) { 
 		if (!isset($_POST['year'.$i])) continue;
 		if (!isset($_POST['desc'.$i])) continue;
@@ -58,6 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	header('Location: index.php');
 	return;
 }
+
+$_SESSION['countPos'] = 0;
 ?>
 
 <!DOCTYPE html>
