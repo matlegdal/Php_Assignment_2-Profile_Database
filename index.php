@@ -11,29 +11,24 @@ $profiles = $query->fetchAll();
 <html>
 <head>
 	<title>Assignement 2 - Profile Database</title>
-	<?php require 'headers.php'; ?>
+	<?php require 'partials/headers.php'; ?>
 </head>
 <body>
+	<?php require 'partials/navbar.php'; ?>
 	<div class="container">
 		<h1>Assignement 2 - Profile Database</h1>
 		<?=flash()?>
 		<?php
-			// Login
-			if (!isset($_SESSION['user_id'])) {
-				echo '<a href="login.php">Please login</a>';
-			}
-
 			// Table of profiles
 			if (count($profiles)<1) {
 				echo "<p>No profile found</p>";
 			} else {
-				require 'table_profiles.php';;
+				require 'partials/table_profiles.php';;
 			}
 
-			// Logout buttons
+			// ADD PROFILE BTN
 			if (isset($_SESSION['user_id'])) {
-				echo '<div><a href="add.php">Add a new entry</a></div>';
-				echo '<div><a href="logout.php">Logout</a></div>';
+				echo '<div><a class="btn btn-primary" href="add.php">Add a new entry</a></div>';
 			}
 		 ?>
 	</div>

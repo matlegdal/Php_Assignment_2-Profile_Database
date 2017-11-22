@@ -24,31 +24,10 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 		return;
 	} else {
 		$_SESSION['error'] = "Your email and password are not valid.";
-		header('Location: login.php');
+		header('Location: index.php');
 		return;
 	}
+} else {
+	header('Location: index.php');
+	return;
 }
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Login</title>
-	<?php require 'headers.php'; ?>
-</head>
-<body>
-	<div class="container">
-		<h1>Login</h1>
-		<?=flash()?>
-
-		<form action="login.php" method="POST">
-			<input type="email" name="email" id="email" placeholder="Enter your email" required>
-			<input type="password" name="password" id="password" placeholder="Type your password" required>
-			<input type="submit" value="Login" onclick="return doValidate();">
-			<input type="reset" value="Cancel">
-		</form>
-		<div><a href="index.php">Retour</a></div>
-	</div>
-
-	<script type="text/javascript" src="validate_login.js"></script>
-</body>
-</html>

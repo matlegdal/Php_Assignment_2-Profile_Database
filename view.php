@@ -29,9 +29,10 @@ if ($profile === false) {
 <html>
 <head>
 	<title>Show a Profile - <?= htmlentities($profile['first_name']).' '.htmlentities($profile['last_name']) ?></title>
-	<?php require 'headers.php'; ?>
+	<?php require 'partials/headers.php'; ?>
 </head>
 <body>
+	<?php require 'partials/navbar.php'; ?>
 	<div class="container">
 		<h1>Profile - <?= htmlentities($profile['first_name']).' '.htmlentities($profile['last_name']) ?></h1>
 		<?=flash()?>

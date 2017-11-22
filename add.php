@@ -64,9 +64,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
 	<title>Add a profile</title>
-	<?php require 'headers.php'; ?>
+	<?php require 'partials/headers.php'; ?>
 </head>
 <body>
+	<?php require 'partials/navbar.php'; ?>
 	<div class="container">
 		<h1>Add a new profile</h1>
 		<?=flash()?>

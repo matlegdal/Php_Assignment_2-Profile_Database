@@ -1,4 +1,5 @@
-<table border="1">
+<div class="container">
+<table class="table">
 	<thead>
 		<tr>
 			<th>Name</th>
@@ -23,3 +24,4 @@
 		?>
 	</tbody>
 </table>
+</div>
