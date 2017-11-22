@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				<div><button id="add_pos" class="btn btn-success btn-sm" style="margin-top: 1em; margin-bottom: 1em">+</button></div>
 			</div>
 			<button class="btn btn-primary" type="submit">Add profile</button>
-			<button class="btn btn-secondary" type="reset">Reset</button>
+			<a class="btn btn-secondary" href="add.php">Reset</a>
 		</form>
 
 		<a href="index.php"><button class="btn btn-secondary" style="margin-top: 1em; margin-bottom: 1em">Return home</button></a>
