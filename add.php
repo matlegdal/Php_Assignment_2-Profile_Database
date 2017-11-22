@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once 'pdo.php';
+require_once 'modules/pdo.php';
+require_once 'modules/util.php';
 
 if (!isset($_SESSION['user_id'])) {
 	$_SESSION['error'] = "Access denied. Please login first.";
@@ -35,8 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		return;
 	}
 }
-
-require 'flash.php';
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +47,7 @@ require 'flash.php';
 <body>
 	<div class="container">
 		<h1>Add a new profile</h1>
-		<?=$flash?>
+		<?=flash()?>
 		<form action="add.php" method="POST">
 			<p>Contact information:</p>
 			<p>

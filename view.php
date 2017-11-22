@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once 'pdo.php';
+require_once 'modules/pdo.php';
+require_once 'modules/util.php';
 
 if (!isset($_GET['profile_id'])) {
 	$_SESSION['error'] = 'The profile you requested is not found.';
@@ -29,6 +30,7 @@ if ($profile === false) {
 <body>
 	<div class="container">
 		<h1>Profile - <?= htmlentities($profile['first_name']).' '.htmlentities($profile['last_name']) ?></h1>
+		<?=flash()?>
 		<p>First name: <?= htmlentities($profile['first_name'])?></p>
 		<p>Last name: <?= htmlentities($profile['last_name'])?></p>
 		<p>Email: <?= htmlentities($profile['email'])?></p>

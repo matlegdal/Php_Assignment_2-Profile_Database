@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once 'pdo.php';
+require_once 'modules/pdo.php';
+require_once 'modules/util.php';
 
 if (isset($_SESSION['user_id'])) {
 	$_SESSION['success'] = 'You are already logged in.';
@@ -27,8 +28,6 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 		return;
 	}
 }
-
-require 'flash.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,7 +38,7 @@ require 'flash.php';
 <body>
 	<div class="container">
 		<h1>Login</h1>
-		<?= $flash ?>
+		<?=flash()?>
 
 		<form action="login.php" method="POST">
 			<input type="email" name="email" id="email" placeholder="Enter your email" required>

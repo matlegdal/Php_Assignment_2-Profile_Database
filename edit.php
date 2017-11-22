@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once 'pdo.php';
+require_once 'modules/pdo.php';
+require_once 'modules/util.php';
 
 if (!isset($_SESSION['user_id'])) {
 	$_SESSION['error'] = "Access denied. Please login first.";
@@ -53,9 +54,6 @@ if ($profile === false) {
 	header('Location: index.php');
 	return;
 }
-
-// flash module
-require 'flash.php';
 ?>
 
 <!DOCTYPE html>
@@ -67,7 +65,7 @@ require 'flash.php';
 <body>
 	<div class="container">
 		<h1>Edit a profile - <?= htmlentities($profile['first_name']).' '.htmlentities($profile['last_name']) ?></h1>
-		<?=$flash?>
+		<?=flash()?>
 		<form action="edit.php?profile_id=<?=$profile['profile_id']?>" method="POST">
 			<p>Contact information:</p>
 			<p>

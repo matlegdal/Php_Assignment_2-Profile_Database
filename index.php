@@ -1,11 +1,10 @@
 <?php
 session_start();
-require_once 'pdo.php';
+require_once 'modules/pdo.php';
+require_once 'modules/util.php';
 
 $query = $pdo->query('SELECT profile_id, first_name, last_name, headline FROM profiles');
 $profiles = $query->fetchAll();
-
-require 'flash.php';
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +16,7 @@ require 'flash.php';
 <body>
 	<div class="container">
 		<h1>Assignement 2 - Profile Database</h1>
-		<?= $flash ?>
+		<?=flash()?>
 		<?php
 			// Login
 			if (!isset($_SESSION['user_id'])) {

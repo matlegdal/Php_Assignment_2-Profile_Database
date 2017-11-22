@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once 'pdo.php';
+require_once 'modules/pdo.php';
+require_once 'modules/util.php';
 
 if (!isset($_SESSION['user_id'])) {
 	$_SESSION['error'] = "Access denied. Please login first.";
@@ -42,6 +43,7 @@ if ($profile === false) {
 <body>
 	<div class="container">
 		<h1>Delete a profile - <?= htmlentities($profile['first_name']).' '.htmlentities($profile['last_name']) ?></h1>
+		<?=flash()?>
 		<div class="alert alert-warning">Are you sure you want to delete this profile?</div>
 		<p>First name: <?= htmlentities($profile['first_name'])?></p>
 		<p>Last name: <?= htmlentities($profile['last_name'])?></p>
