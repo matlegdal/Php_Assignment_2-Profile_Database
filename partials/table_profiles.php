@@ -17,7 +17,9 @@
 			echo "<td>".htmlentities($profile['headline'])."</td>";
 			if (isset($_SESSION['user_id'])) {
 				echo '<td>';
-				echo '<a href="edit.php?profile_id='.$profile['profile_id'].'">Edit</a> / <a href="delete.php?profile_id='.$profile['profile_id'].'">Delete</a>';
+				if ($_SESSION['user_id'] == $profile['user_id']) {
+                    echo '<a href="edit.php?profile_id='.$profile['profile_id'].'">Edit</a> / <a href="delete.php?profile_id='.$profile['profile_id'].'">Delete</a>';
+                }
 				echo "</td>";
 			}
 		}

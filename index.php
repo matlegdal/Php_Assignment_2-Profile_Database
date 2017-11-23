@@ -3,14 +3,14 @@ session_start();
 require_once 'modules/pdo.php';
 require_once 'modules/util.php';
 
-$query = $pdo->query('SELECT profile_id, first_name, last_name, headline FROM profiles');
+$query = $pdo->query('SELECT * FROM profiles');
 $profiles = $query->fetchAll();
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Assignement 2 - Profile Database</title>
+	<title>Assignment 2 - Profile Database</title>
 	<?php require 'partials/headers.php'; ?>
 </head>
 <body>
