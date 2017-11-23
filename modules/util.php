@@ -44,7 +44,28 @@ function load_positions($pdo, $profile_id) {
 
 // TODO: load educations
 
-// TODO: insert position
+
+function insert_positions($pdo, $profile_id){
+    try {
+        $rank = 1;
+        for ($i=1; $i < 11; $i++) {
+            if (!isset($_POST['year' . $i])) continue;
+            if (!isset($_POST['desc' . $i])) continue;
+            $query = $pdo->prepare("INSERT INTO positions (profile_id, rank, year, description) VALUES(:profile_id, :rank, :year, :description)");
+            $query->execute(array(
+                ':profile_id' => $profile_id,
+                ':rank' => $rank,
+                'year' => $_POST['year' . $i],
+                ':description' => $_POST['desc' . $i]
+            ));
+            $rank++;
+        }
+    } catch (Exception $e) {
+            return $e;
+        }
+    return true;
+}
+
 // TODO: insert education
 
 function validate_profile() {

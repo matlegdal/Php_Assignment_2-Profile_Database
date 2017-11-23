@@ -60,20 +60,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$query->execute(array(':profile_id' => $_REQUEST['profile_id']));
 
 	// INSERT POSITIONS
-//    TODO: refactor -> insertPos()
-	$rank = 1;
-	for ($i=1; $i < 11; $i++) { 
-		if (!isset($_POST['year'.$i])) continue;
-		if (!isset($_POST['desc'.$i])) continue;
-		$query = $pdo->prepare("INSERT INTO positions (profile_id, rank, year, description) VALUES(:profile_id, :rank, :year, :description)");
-		$query->execute(array(
-			':profile_id' => $_POST['profile_id'],
-			':rank' => $rank,
-			'year' => $_POST['year'.$i],
-			':description' => $_POST['desc'.$i]
-		));
-		$rank++;
-	}
+    $profile_id = $_POST['profile_id'];
+    $insert_res = insert_positions($pdo, $profile_id);
+    if ($insert_res !== true){
+        $_SESSION['error'] = $insert_res;
+        header('Location: add.php');
+        return;
+    }
+
 //	TODO: clear previous education
 //	TODO: add insert education
 
