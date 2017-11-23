@@ -159,7 +159,7 @@ $educations = load_educations($pdo, $_REQUEST['profile_id']);
                                     echo '</div></div>';
                                     echo '<div class="form-group">';
                                     echo '<label for="edu_desc">Institution</label>';
-                                    echo '<input type="text" class="form-control" name="edu_desc'.$education['rank'].'" placeholder="Enter your school or institution." value="'.htmlentities($education['name']).'">';
+                                    echo '<input type="text" class="form-control school" name="edu_desc'.$education['rank'].'" placeholder="Enter your school or institution." value="'.htmlentities($education['name']).'">';
                                     echo '</div></div></div>';
                                 }
                             }

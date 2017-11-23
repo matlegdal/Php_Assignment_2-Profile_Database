@@ -111,7 +111,9 @@ $_SESSION['countPos'] = 0;
 <!--                    EDUCATION-->
                     <div class="container-fluid" style="margin-top: 1em; margin-bottom: 1em">
                         <h4>Education:</h4>
-                        <div id="education_fields"></div>
+                        <div id="education_fields">
+
+                        </div>
                         <div><button id="add_edu" class="btn btn-success btn-sm" style="margin-top: 1em; margin-bottom: 1em">+</button></div>
                     </div>
 

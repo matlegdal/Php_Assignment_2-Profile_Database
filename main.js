@@ -47,18 +47,25 @@ $(document).ready(function () {
             +'<div class="col-sm-6">'
             +'<button type="button" onclick="$(\'#edu'+countEdu+'\').remove();return;" style="float: right;" class="btn btn-danger btn-sm">-</button>'
             +'</div></div>'
-            +'<div class="form-group">'
+            +'<div class="form-group ui-widget">'
             +'<label for="desc">Institution</label>'
-            +'<input type="text" class="form-control" name="edu_desc'+countEdu+'" placeholder="Enter your school or institution." >'
-            +'</div></div></div>'
+            +'<input type="text" class="form-control school" name="edu_desc'+countEdu+'" placeholder="Enter your school or institution." value="" >'
+            +'</div>'
+			+'</div></div>'
         );
+        $('.school').autocomplete({
+            source: "modules/search.php",
+            minLength: 2
+        });
+    });
+    $( ".school" ).autocomplete({
+        source: "modules/search.php",
+        minLength: 2
     });
 });
 
-
-
-
 // TODO: add autocomplete
+
 
 function doValidate() {
 	console.log('Validating...');
