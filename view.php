@@ -17,11 +17,8 @@ if ($profile === false) {
     return;
 }
 
-// FECTH POSITIONS
-// TODO: refactor -> load position
-$query = $pdo->prepare("SELECT * FROM positions WHERE profile_id = :profile_id");
-$query->execute(array(':profile_id' => $_GET['profile_id']));
-$positions = $query->fetchAll(PDO::FETCH_ASSOC);
+// FETCH POSITIONS
+$positions = load_positions($pdo, $_REQUEST['profile_id']);
 
 // TODO: add load education
 ?>

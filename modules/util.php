@@ -30,11 +30,18 @@ function load_profile($pdo, $profile_id, $secured=true) {
     if ($profile === false) {
         return false;
     }
+
     return $profile;
 }
 
+function load_positions($pdo, $profile_id) {
+    $query = $pdo->prepare("SELECT * FROM positions WHERE profile_id = :profile_id");
+    $query->execute(array(':profile_id' => $profile_id));
+    $positions = $query->fetchAll(PDO::FETCH_ASSOC);
 
-// TODO: load positions
+    return $positions;
+}
+
 // TODO: load educations
 
 // TODO: insert position
