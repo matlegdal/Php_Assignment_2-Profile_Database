@@ -26,7 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		return;
 	}
 
-//	TODO: validate education
+    $message = validate_edu();
+    if (is_string($message)) {
+        $_SESSION['error'] = $message;
+        header("Location: add.php");
+        return;
+    }
 
 	// INSERT PROFILE
 	$query = $pdo->prepare("INSERT INTO profiles (user_id, first_name, last_name, email, headline, summary) VALUES (:user_id, :first_name, :last_name, :email, :headline, :summary)");
@@ -38,9 +43,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		':headline' => $_POST['headline'],
 		':summary' => $_POST['summary']
 	));
+    $profile_id = $pdo->lastInsertId();
 
 	// INSERT POSITION
-	$profile_id = $pdo->lastInsertId();
 	$insert_res = insert_positions($pdo, $profile_id);
 	if ($insert_res !== true){
 	    $_SESSION['error'] = $insert_res;
@@ -48,7 +53,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	    return;
     }
 
-//	TODO: add insert education
+    // INSERT EDUCATION
+    $insert_res = insert_educations($pdo, $profile_id);
+    if ($insert_res !== true){
+        $_SESSION['error'] = $insert_res;
+        header('Location: add.php');
+        return;
+    }
 
 	// UPON SUCCESS REDIRECT
 	$_SESSION['success'] = 'Profile added';
