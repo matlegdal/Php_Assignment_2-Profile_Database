@@ -15,7 +15,7 @@ $profiles = $query->fetchAll();
 </head>
 <body>
 	<?php require 'partials/navbar.php'; ?>
-	<div class="container">
+	<div class="container" style="margin-top: 2em;">
 		<h1>Assignement 2 - Profile Database</h1>
 		<?=flash()?>
 		<?php
@@ -29,6 +29,8 @@ $profiles = $query->fetchAll();
 			// ADD PROFILE BTN
 			if (isset($_SESSION['user_id'])) {
 				echo '<div><a class="btn btn-primary" href="add.php">Add a new entry</a></div>';
+			} else {
+				echo '<p class="blockquote-footer">You must be logged in to modify or add profiles.</p>';
 			}
 		 ?>
 	</div>
