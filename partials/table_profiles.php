@@ -18,7 +18,10 @@
 			if (isset($_SESSION['user_id'])) {
 				echo '<td>';
 				if ($_SESSION['user_id'] == $profile['user_id']) {
-                    echo '<a href="edit.php?profile_id='.$profile['profile_id'].'">Edit</a> / <a href="delete.php?profile_id='.$profile['profile_id'].'">Delete</a>';
+                    echo '<span class="btn-group">';
+                    echo '<a class="btn btn-sm btn-warning" href="edit.php?profile_id='.$profile['profile_id'].'">Edit</a>';
+                    echo '<a class="btn btn-sm btn-danger" href="delete.php?profile_id='.$profile['profile_id'].'" class="btn btn-danger">Delete</a>';
+                    echo '</span>';
                 }
 				echo "</td>";
 			}

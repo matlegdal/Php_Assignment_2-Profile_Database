@@ -19,7 +19,7 @@ if (!isset($_REQUEST['profile_id'])) {
 // FETCH PROFILE
 $query = $pdo->prepare("SELECT * FROM profiles WHERE profile_id = :profile_id AND user_id = :user_id");
 $query->execute(array(
-    ':profile_id' => $_GET['profile_id'],
+    ':profile_id' => $_REQUEST['profile_id'],
     ':user_id' => $_SESSION['user_id']
 ));
 $profile = $query->fetch(PDO::FETCH_ASSOC);

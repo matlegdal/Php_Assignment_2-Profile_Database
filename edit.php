@@ -19,7 +19,7 @@ if (!isset($_REQUEST['profile_id'])) {
 // FETCH PROFILE
 $query = $pdo->prepare("SELECT * FROM profiles WHERE profile_id = :profile_id AND user_id = :user_id");
 $query->execute(array(
-    ':profile_id' => $_GET['profile_id'],
+    ':profile_id' => $_REQUEST['profile_id'],
     ':user_id' => $_SESSION['user_id']
 ));
 $profile = $query->fetch(PDO::FETCH_ASSOC);
@@ -51,7 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	// INSERT PROFILE
 	$query = $pdo->prepare("UPDATE profiles SET first_name=:first_name, last_name=:last_name, email=:email, headline=:headline, summary=:summary WHERE profile_id=:profile_id");
 	$query->execute(array(
-        ':user_id' => $_SESSION['user_id'],
 		':profile_id' => $_POST['profile_id'],
 		':first_name' => $_POST['first_name'],
 		':last_name' => $_POST['last_name'],

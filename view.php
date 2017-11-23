@@ -36,7 +36,19 @@ if ($profile === false) {
 	<div class="container" style="margin: 2em">
 		<?=flash()?>
 		<div class="card">
-			<h1 class="card-header">Profile - <?= htmlentities($profile['first_name']).' '.htmlentities($profile['last_name']) ?></h1>
+            <div class="card-header">
+			    <h1>Profile - <?= htmlentities($profile['first_name']).' '.htmlentities($profile['last_name']) ?></h1>
+                <?php
+                    if ($profile['user_id'] === $_SESSION['user_id']) {
+                        echo '<span class="btn-group" style="float: right">';
+                        echo '<a class="btn btn-sm btn-warning" href="edit.php?profile_id='.$profile['profile_id'].'">Edit</a>';
+                        echo '<a class="btn btn-sm btn-danger" href="delete.php?profile_id='.$profile['profile_id'].'" class="btn btn-danger">Delete</a>';
+                        echo '</span>';
+                    }
+                ?>
+
+
+            </div>
 			<div class="card-body">
 				<p class="card-text">First name: <?= htmlentities($profile['first_name'])?></p>
 				<p class="card-text">Last name: <?= htmlentities($profile['last_name'])?></p>
