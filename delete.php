@@ -3,10 +3,31 @@ session_start();
 require_once 'modules/pdo.php';
 require_once 'modules/util.php';
 
+// VALIDATE THE PARAM OF THE REQUEST
 if (!isset($_SESSION['user_id'])) {
-	$_SESSION['error'] = "Access denied. Please login first.";
-	header('Location: index.php');
-	return;
+    $_SESSION['error'] = "Access denied. Please login first.";
+    header('Location: index.php');
+    return;
+}
+
+if (!isset($_REQUEST['profile_id'])) {
+    $_SESSION['error'] = 'The profile you requested is not found.';
+    header('Location: index.php');
+    return;
+}
+
+// FETCH PROFILE
+$query = $pdo->prepare("SELECT * FROM profiles WHERE profile_id = :profile_id AND user_id = :user_id");
+$query->execute(array(
+    ':profile_id' => $_GET['profile_id'],
+    ':user_id' => $_SESSION['user_id']
+));
+$profile = $query->fetch(PDO::FETCH_ASSOC);
+
+if ($profile === false) {
+    $_SESSION['error'] = 'The profile you requested is not found or your access is denied.';
+    header('Location: index.php');
+    return;
 }
 
 // POST CONTROLLER
@@ -20,17 +41,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 }
 
-
 // GET CONTROLLER
-$query = $pdo->prepare("SELECT * FROM profiles WHERE profile_id = :profile_id");
+// FETCH POSITIONS
+$query = $pdo->prepare("SELECT * FROM positions WHERE profile_id = :profile_id");
 $query->execute(array(':profile_id' => $_GET['profile_id']));
-$profile = $query->fetch(PDO::FETCH_ASSOC);
-
-if ($profile === false) {
-	$_SESSION['error'] = 'The profile you requested is not found.';
-	header('Location: index.php');
-	return;
-}
+$positions = $query->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
