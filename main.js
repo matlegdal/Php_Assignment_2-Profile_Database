@@ -45,7 +45,7 @@ $(document).ready(function () {
             +'<input class="form-control" type="number" name="year'+countEdu+'" min="1900" max="2020" value="2017">'
             +'</div>'
             +'<div class="col-sm-6">'
-            +'<button type="button" onclick="$(\'#education'+countEdu+'\').remove();return;" style="float: right;" id="del_pos" class="btn btn-danger btn-sm">-</button>'
+            +'<button type="button" onclick="$(\'#education'+countEdu+'\').remove();return;" style="float: right;" id="del_edu" class="btn btn-danger btn-sm">-</button>'
             +'</div></div>'
             +'<div class="form-group">'
             +'<label for="desc">Institution</label>'

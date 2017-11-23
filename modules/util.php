@@ -42,8 +42,13 @@ function load_positions($pdo, $profile_id) {
     return $positions;
 }
 
-// TODO: load educations
+function load_educations($pdo, $profile_id) {
+    $query = $pdo->prepare("SELECT educations.profile_id, educations.year, educations.rank, institutions.name FROM educations LEFT JOIN institutions on educations.institution_id=institutions.institution_id WHERE educations.profile_id=:profile_id");
+    $query->execute(array('profile_id' => $profile_id));
+    $educations = $query->fetchAll(PDO::FETCH_ASSOC);
 
+    return $educations;
+}
 
 function insert_positions($pdo, $profile_id){
     try {
@@ -80,6 +85,8 @@ function validate_profile() {
 	return True;
 }
 
+// TODO: validate education
+
 function validate_pos() {
 	for ($i=1; $i < 11; $i++) { 
 		if (!isset($_POST['year'.$i])) continue;
@@ -94,9 +101,3 @@ function validate_pos() {
 	}
 	
 }
-
-// TODO: validate education
-
-
-
-

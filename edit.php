@@ -81,7 +81,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // FETCH POSITIONS
 $positions = load_positions($pdo, $_REQUEST['profile_id']);
 
-//TODO:  add load education
+// FETCH EDUCATION
+$educations = load_educations($pdo, $_REQUEST['profile_id']);
 
 ?>
 
@@ -91,6 +92,7 @@ $positions = load_positions($pdo, $_REQUEST['profile_id']);
 	<title>Edit a profile</title>
 	<?php require 'partials/headers.php'; ?>
 	<script type="text/javascript">var countPos=<?=count($positions)?>;</script>
+<!--    TODO: add countEdu-->
 </head>
 <body>
 	<?php require 'partials/navbar.php'; ?>
@@ -124,10 +126,31 @@ $positions = load_positions($pdo, $_REQUEST['profile_id']);
 						<textarea class="form-control" name="summary" placeholder="Enter a brief summary" ><?= htmlentities($profile['summary'])?></textarea>
 					</div>
 
-<!--                    TODO: add education-->
+<!--                EDUCATION-->
                     <div class="container-fluid" style="margin-top: 1em; margin-bottom: 1em">
                         <h4>Education:</h4>
-                        <div id="education_fields"></div>
+                        <div id="education_fields">
+                            <?php
+                            if (count($educations)>0) {
+                                foreach ($educations as $education) {
+                                    echo '<div id="education'.$education['rank'].'" class="card" style="margin-bottom: 1em;">';
+                                    echo '<div class="card-body">';
+                                    echo '<div class="form-group row">';
+                                    echo '<label class="col-form-label col-sm-2" for="year">Year: </label>';
+                                    echo '<div class="col-sm-4">';
+                                    echo '<input class="form-control" type="number" name="year'.$education['rank'].'" min="1900" max="2020" value="'.$education['year'].'">';
+                                    echo '</div>';
+                                    echo '<div class="col-sm-6">';
+                                    echo '<button type="button" onclick="$(\'#education'.$education['rank'].'\').remove();return;" style="float: right;" id="del_edu" class="btn btn-danger btn-sm">-</button>';
+                                    echo '</div></div>';
+                                    echo '<div class="form-group">';
+                                    echo '<label for="desc">Institution</label>';
+                                    echo '<input type="text" class="form-control" name="institution'.$education['rank'].'" placeholder="Enter your school or institution." value="'.$education['name'].'">';
+                                    echo '</div></div></div>';
+                                }
+                            }
+                            ?>
+                        </div>
                         <div><button id="add_edu" class="btn btn-success btn-sm" style="margin-top: 1em; margin-bottom: 1em">+</button></div>
                     </div>
 

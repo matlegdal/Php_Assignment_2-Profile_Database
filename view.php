@@ -20,7 +20,8 @@ if ($profile === false) {
 // FETCH POSITIONS
 $positions = load_positions($pdo, $_REQUEST['profile_id']);
 
-// TODO: add load education
+// FETCH EDUCATION
+$educations = load_educations($pdo, $_REQUEST['profile_id']);
 ?>
 
 <!DOCTYPE html>
@@ -44,8 +45,6 @@ $positions = load_positions($pdo, $_REQUEST['profile_id']);
                         echo '</span>';
                     }
                 ?>
-
-
             </div>
 			<div class="card-body">
 				<p class="card-text">First name: <?= htmlentities($profile['first_name'])?></p>
@@ -53,7 +52,24 @@ $positions = load_positions($pdo, $_REQUEST['profile_id']);
 				<p class="card-text">Email: <?= htmlentities($profile['email'])?></p>
 				<p class="card-text">Headline: <?= htmlentities($profile['headline'])?></p>
 				<p class="card-text">Summary: <?= htmlentities($profile['summary'])?></p>
-<!--				TODO: add education-->
+
+                <h4>Education:</h4>
+                <?php
+                if (count($educations) == 0) {
+                    echo "<p>No education yet</p>";
+                } else {
+                    echo "<ul>";
+                    foreach ($educations as $education) {
+                        echo "<li>";
+                        echo $education['year'];
+                        echo " - ";
+                        echo $education['name'];
+                        echo "</li>";
+                    }
+                    echo "</ul>";
+                }
+                ?>
+
                 <h4>Positions:</h4>
                 <?php
 					if (count($positions) == 0) {
