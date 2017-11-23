@@ -17,13 +17,7 @@ if (!isset($_REQUEST['profile_id'])) {
 }
 
 // FETCH PROFILE
-$query = $pdo->prepare("SELECT * FROM profiles WHERE profile_id = :profile_id AND user_id = :user_id");
-$query->execute(array(
-    ':profile_id' => $_REQUEST['profile_id'],
-    ':user_id' => $_SESSION['user_id']
-));
-$profile = $query->fetch(PDO::FETCH_ASSOC);
-
+$profile = load_profile($pdo, $_REQUEST['profile_id'], true);
 if ($profile === false) {
     $_SESSION['error'] = 'The profile you requested is not found or your access is denied.';
     header('Location: index.php');
@@ -48,7 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		return;
 	}
 
-	// INSERT PROFILE
+//	TODO: validate education
+
+	// UPDATE PROFILE
 	$query = $pdo->prepare("UPDATE profiles SET first_name=:first_name, last_name=:last_name, email=:email, headline=:headline, summary=:summary WHERE profile_id=:profile_id");
 	$query->execute(array(
 		':profile_id' => $_POST['profile_id'],
@@ -64,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$query->execute(array(':profile_id' => $_REQUEST['profile_id']));
 
 	// INSERT POSITIONS
+//    TODO: refactor -> insertPos()
 	$rank = 1;
 	for ($i=1; $i < 11; $i++) { 
 		if (!isset($_POST['year'.$i])) continue;
@@ -77,6 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		));
 		$rank++;
 	}
+//	TODO: clear previous education
+//	TODO: add insert education
 
 	// REDIRECT
 	$_SESSION['success'] = 'Profile edited';
@@ -87,9 +86,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // GET CONTROLLER
 // FETCH POSITIONS
+// TODO: refactor -> load position
 $query = $pdo->prepare("SELECT * FROM positions WHERE profile_id = :profile_id");
 $query->execute(array(':profile_id' => $_GET['profile_id']));
 $positions = $query->fetchAll(PDO::FETCH_ASSOC);
+
+//TODO:  add load education
+
 ?>
 
 <!DOCTYPE html>
@@ -130,7 +133,10 @@ $positions = $query->fetchAll(PDO::FETCH_ASSOC);
 						<label for="summary">Summary</label>
 						<textarea class="form-control" name="summary" placeholder="Enter a brief summary" ><?= htmlentities($profile['summary'])?></textarea>
 					</div>
-					<div class="container-fluid" style="margin-top: 1em; margin-bottom: 1em">
+
+<!--                    TODO: add education-->
+
+                    <div class="container-fluid" style="margin-top: 1em; margin-bottom: 1em">
 						<h4>Positions:</h4>
 						<div id="position_fields">
 							<?php 

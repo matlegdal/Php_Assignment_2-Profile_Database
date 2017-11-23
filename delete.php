@@ -17,13 +17,7 @@ if (!isset($_REQUEST['profile_id'])) {
 }
 
 // FETCH PROFILE
-$query = $pdo->prepare("SELECT * FROM profiles WHERE profile_id = :profile_id AND user_id = :user_id");
-$query->execute(array(
-    ':profile_id' => $_REQUEST['profile_id'],
-    ':user_id' => $_SESSION['user_id']
-));
-$profile = $query->fetch(PDO::FETCH_ASSOC);
-
+$profile = load_profile($pdo, $_REQUEST['profile_id'], true);
 if ($profile === false) {
     $_SESSION['error'] = 'The profile you requested is not found or your access is denied.';
     header('Location: index.php');
@@ -43,10 +37,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // GET CONTROLLER
 // FETCH POSITIONS
+// TODO: refactor -> load positions
 $query = $pdo->prepare("SELECT * FROM positions WHERE profile_id = :profile_id");
 $query->execute(array(':profile_id' => $_GET['profile_id']));
 $positions = $query->fetchAll(PDO::FETCH_ASSOC);
 
+// TODO: add load education
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +64,10 @@ $positions = $query->fetchAll(PDO::FETCH_ASSOC);
 				<p class="card-text">Email: <?= htmlentities($profile['email'])?></p>
 				<p class="card-text">Headline: <?= htmlentities($profile['headline'])?></p>
 				<p class="card-text">Summary: <?= htmlentities($profile['summary'])?></p>
-				<h4>Positions:</h4>
+
+<!--                TODO: add education-->
+
+                <h4>Positions:</h4>
 				
 				<?php
 					if (count($positions) == 0) {

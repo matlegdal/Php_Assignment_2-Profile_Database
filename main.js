@@ -27,6 +27,9 @@ $(document).ready(function () {
 	});
 });
 
+// TODO: add education
+// TODO: add autocomplete
+
 function doValidate() {
 	console.log('Validating...');
 	try {

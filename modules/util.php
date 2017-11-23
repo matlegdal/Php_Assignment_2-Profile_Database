@@ -1,6 +1,5 @@
 <?php
 
-
 function flash() {
 	if ( isset($_SESSION['error']) ) {
 	    $flash = '<div class="alert alert-danger">'.$_SESSION['error']."</div>\n";
@@ -14,6 +13,32 @@ function flash() {
 	}
 }
 
+function load_profile($pdo, $profile_id, $secured=true) {
+    if ($secured === true) {
+        $query = $pdo->prepare("SELECT * FROM profiles WHERE profile_id = :profile_id AND user_id = :user_id");
+        $query->execute(array(
+            ':profile_id' => $_REQUEST['profile_id'],
+            ':user_id' => $_SESSION['user_id']
+        ));
+        $profile = $query->fetch(PDO::FETCH_ASSOC);
+    } else {
+        $query = $pdo->prepare("SELECT * FROM profiles WHERE profile_id = :profile_id");
+        $query->execute(array(':profile_id' => $profile_id));
+        $profile = $query->fetch(PDO::FETCH_ASSOC);
+    }
+
+    if ($profile === false) {
+        return false;
+    }
+    return $profile;
+}
+
+
+// TODO: load positions
+// TODO: load educations
+
+// TODO: insert position
+// TODO: insert education
 
 function validate_profile() {
 	if (strlen($_POST['first_name'])<1 || strlen($_POST['last_name'])<1 || strlen($_POST['email'])<1 || strlen($_POST['headline'])<1 || strlen($_POST['summary'])<1) {
@@ -41,5 +66,9 @@ function validate_pos() {
 	}
 	
 }
+
+// TODO: validate education
+
+
 
 

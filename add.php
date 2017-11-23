@@ -26,6 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		return;
 	}
 
+//	TODO: validate education
+
 	// INSERT PROFILE
 	$query = $pdo->prepare("INSERT INTO profiles (user_id, first_name, last_name, email, headline, summary) VALUES (:user_id, :first_name, :last_name, :email, :headline, :summary)");
 	$query->execute(array(
@@ -38,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	));
 
 	// INSERT POSITION
+//    TODO: refactor -> insert position
 	$profile_id = $pdo->lastInsertId();
 	$rank = 1;
 	for ($i=1; $i < 11; $i++) { 
@@ -52,6 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		));
 		$rank++;
 	}
+
+//	TODO: add insert education
 
 	// UPON SUCCESS REDIRECT
 	$_SESSION['success'] = 'Profile added';
@@ -99,6 +104,7 @@ $_SESSION['countPos'] = 0;
 						<label for="summary">Summary</label>
 						<textarea class="form-control" name="summary" placeholder="Enter a brief summary" ></textarea>
 					</div>
+<!--                    TODO: add education-->
 					<div class="container-fluid" style="margin-top: 1em; margin-bottom: 1em">
 						<h4>Positions:</h4>
 						<div id="position_fields"></div>
