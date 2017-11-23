@@ -1,6 +1,9 @@
 if (typeof countPos === 'undefined') {var countPos = 0}
+if (typeof countEdu === 'undefined') {var countEdu = 0}
 
 $(document).ready(function () {
+
+	// Add position field
 	$('#add_pos').on("click", function(event){
 		event.preventDefault();
 		if (countPos >= 10) {
@@ -25,10 +28,8 @@ $(document).ready(function () {
 			+'</div></div></div>'
 			);
 	});
-});
 
-if (typeof countEdu === 'undefined') {var countEdu = 0}
-$(document).ready(function () {
+	// Add education field
     $('#add_edu').on("click", function(event){
         event.preventDefault();
         if (countEdu >= 10) {
@@ -51,38 +52,17 @@ $(document).ready(function () {
             +'<label for="desc">Institution</label>'
             +'<input type="text" class="form-control school" name="edu_desc'+countEdu+'" placeholder="Enter your school or institution." value="" >'
             +'</div>'
-			+'</div></div>'
+            +'</div></div>'
         );
         $('.school').autocomplete({
             source: "modules/search.php",
             minLength: 2
         });
     });
+
+    // Add autocomplete
     $( ".school" ).autocomplete({
         source: "modules/search.php",
         minLength: 2
     });
 });
-
-// TODO: add autocomplete
-
-
-function doValidate() {
-	console.log('Validating...');
-	try {
-		var addr = document.getElementById('email').value;
-        var pw = document.getElementById('password').value;
-        console.log("Validating addr="+addr+" pw="+pw);
-        if (addr === null || addr === "" || pw === null || pw === "") {
-            alert("Both fields must be filled out");
-            return false;
-        }
-        if ( addr.indexOf('@') === -1 ) {
-            alert("Invalid email address");
-            return false;
-        }
-        return true;
-    } catch(e) {
-        return false;
-    }
-}
