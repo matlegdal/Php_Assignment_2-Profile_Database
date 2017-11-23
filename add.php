@@ -96,7 +96,15 @@ $_SESSION['countPos'] = 0;
 						<label for="summary">Summary</label>
 						<textarea class="form-control" name="summary" placeholder="Enter a brief summary" ></textarea>
 					</div>
-<!--                    TODO: add education-->
+
+<!--                    EDUCATION-->
+                    <div class="container-fluid" style="margin-top: 1em; margin-bottom: 1em">
+                        <h4>Education:</h4>
+                        <div id="education_fields"></div>
+                        <div><button id="add_edu" class="btn btn-success btn-sm" style="margin-top: 1em; margin-bottom: 1em">+</button></div>
+                    </div>
+
+<!--                    POSITIONS-->
 					<div class="container-fluid" style="margin-top: 1em; margin-bottom: 1em">
 						<h4>Positions:</h4>
 						<div id="position_fields"></div>
