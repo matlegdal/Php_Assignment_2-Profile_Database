@@ -93,7 +93,7 @@ $positions = $query->fetchAll(PDO::FETCH_ASSOC);
 <head>
 	<title>Edit a profile</title>
 	<?php require 'partials/headers.php'; ?>
-	<script type="text/javascript">var countPos=<?=count($positions)?></script>
+	<script type="text/javascript">var countPos=<?=count($positions)?>;</script>
 </head>
 <body>
 	<?php require 'partials/navbar.php'; ?>

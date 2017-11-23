@@ -16,7 +16,7 @@ $profiles = $query->fetchAll();
 <body>
 	<?php require 'partials/navbar.php'; ?>
 	<div class="container" style="margin-top: 2em;">
-		<h1>Assignement 2 - Profile Database</h1>
+		<h1>Assignment 2 - Profile Database</h1>
 		<?=flash()?>
 		<?php
 			// Table of profiles
