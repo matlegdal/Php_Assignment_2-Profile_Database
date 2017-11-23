@@ -12,7 +12,7 @@ Dans la partie 1 du projet on crée le crud basique du projet.
 
 https://www.wa4e.com/assn/res-profile/
 
-###Part 2:
+### Partie 2:
 Dans la partie 2, on utilise jqery pour ajouter de l'interactivité dans les formulaires.
 
 ##### Fonctionalités: 
@@ -22,7 +22,7 @@ Dans la partie 2, on utilise jqery pour ajouter de l'interactivité dans les for
 
 https://www.wa4e.com/assn/res-position/
 
-###Part 3:
+### Partie 3:
 Dans la partie 3, on crée un champ d'autocomplétion utilisant AJAX et jqery.
 
 ##### Fonctionalités: 
